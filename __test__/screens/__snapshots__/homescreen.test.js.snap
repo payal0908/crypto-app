@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "#ebedfc",
+      "flex": 1,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "marginTop": "20%",
+        "paddingHorizontal": 16,
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "fontSize": 30,
+          "fontWeight": "bold",
+        }
+      }
+    >
+      Market Data
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "borderRadius": 30,
+        "elevation": 14,
+        "height": "100%",
+        "marginTop": 10,
+        "padding": 10,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": -2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.21,
+        "shadowRadius": 5.11,
+      }
+    }
+  >
+    <ActivityIndicator
+      size="large"
+    />
+  </View>
+</View>
+`;

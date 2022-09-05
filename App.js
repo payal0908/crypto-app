@@ -1,20 +1,45 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {useState, useEffect} from 'react';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
+import ListCoin from './components/ListCoin';
+import {SAMPLE_DATA} from './assets/data/sampleData';
+import {MyTheme, MyDarkTheme} from './themes/appThemes';
+import { NavigationContainer } from '@react-navigation/native';
+import Tabs from './navigation/tabs';
+import { EventRegister } from 'react-native-event-listeners';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
+
+  const [darkApp, setDarkApp] = useState(false)
+  const appTheme = darkApp ? MyDarkTheme : MyTheme
+
+  useEffect(() => {
+    let eventListener = EventRegister.addEventListener(
+      'changeThemeEvent',
+      data => {
+        AsyncStorage.setItem('darkMode', JSON.stringify(data));
+        setDarkApp(data);
+      }
+    )
+    const getDarkMode = async () => {
+      let getMode = await AsyncStorage.getItem('darkMode');
+      setDarkApp(JSON.parse(getMode))
+    }
+    getDarkMode();
+    return() =>{
+      EventRegister.removeEventListener(eventListener);
+    }
+  })
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer theme={appTheme}>
+        <Tabs />
+      </NavigationContainer>
   );
 }
 
+
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+
 });
