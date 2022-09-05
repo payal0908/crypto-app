@@ -13,7 +13,6 @@ export const getTweetsData = async (curr) => {
     } else {
       result = id.concat('-',coin);
     }
-    console.log(result)
     const response = await axios.get(`https://api.coinpaprika.com/v1/coins/${result}/twitter` , { data:null}, {
   headers: {
     'Aceept': 'application/json',
